@@ -1,0 +1,56 @@
+
+/* Import the Inter font*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --bg-light: #fff5fc;
+    --primary-light: #0b956a;
+    --marker: tomato;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: var(--bg-light);
+    background: var(--primary-light);
+}
+
+::selection { /* Code for Firefox */
+    color: var(--bg-light);
+    background: var(--primary-light);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    color: var(--primary-light);
+    cursor: url(../img/leaf-bold.svg) 0 32, pointer;
+}
+
+.container {
+    margin: 40px 120px;
+}
+
+main > * {
+    margin: 4rem;
+}
+
+.hero {
+    height: 100vh;
+    border: 1px dashed var(--marker) ;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    padding: 2rem 0;
+}
+
+.treatment {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.treatment > * {
+    border: 1px dashed var(--marker);
+    padding: 2rem;
+}
