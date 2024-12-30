@@ -1,10 +1,11 @@
 
 /* Import the Inter font*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 :root {
     --bg-light: #fff5fc;
     --primary-light: #0b956a;
+    --primary-dark: #007455;
     --marker: tomato;
 }
 
@@ -19,29 +20,77 @@
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Crimson Pro", serif;
+    /* font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     min-height: 100vh;
     background-color: var(--bg-light);
-    color: var(--primary-light);
-    cursor: url(../img/leaf-bold.svg) 0 32, pointer;
+    color: var(--primary-dark);
+    /* cursor: url(../img/leaf-bold.svg) 0 32, pointer; */
 }
 
 .container {
-    margin: 40px 120px;
+    margin: 0px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 main > * {
     margin: 4rem;
 }
 
+main {
+    padding-bottom: 8em;
+}
+
+/* * {
+    outline: 1px dashed var(--marker) ;
+} */
+
 .hero {
     height: 100vh;
-    border: 1px dashed var(--marker) ;
+    /* border: 1px dashed var(--marker); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+    font-family: "Crimson Pro", serif;
+    flex-direction: column;
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 8rem;
     padding: 2rem 0;
+}
+
+.intro-desc {
+    text-align: center;
+    font-size: 4em;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: .5em;
+}
+
+
+p {
+    line-height: 1.5;
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+p.large {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+p.tiny {
+    font-size: 1.2em;
+}
+
+a, a:visited {
+    color: var(--primary-dark);
+    border-bottom: 1px solid var(--primary-dark);
+    text-decoration: none;
 }
 
 .treatment {
@@ -50,7 +99,24 @@ main > * {
     gap: 1rem;
 }
 
-.treatment > * {
-    border: 1px dashed var(--marker);
-    padding: 2rem;
+
+section p {
+    max-width: 600px;
+}
+
+footer {
+    padding: 4em;
+    background-color: var(--primary-dark);
+    color: var(--bg-light);
+}
+
+.centered {
+    text-align: center;
+}
+
+.sources {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-light);
 }
