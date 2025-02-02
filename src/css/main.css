@@ -6,6 +6,9 @@
     --bg-light: #fff5fc;
     --primary-light: #0b956a;
     --primary-dark: #007455;
+    --error: #8e0000;
+    --foreground: #181818;
+    --foreground-muted: #71717A; 
     --marker: tomato;
 }
 
@@ -25,6 +28,8 @@ body {
     min-height: 100vh;
     background-color: var(--bg-light);
     color: var(--primary-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     /* cursor: url(../img/leaf-bold.svg) 0 32, pointer; */
 }
 
@@ -33,6 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    outline: 1px dashed var(--marker);
 }
 
 main > * {
@@ -71,11 +77,10 @@ main {
     margin-bottom: .5em;
 }
 
-
 p {
     line-height: 1.5;
     font-size: 1.5em;
-    margin: 1em;
+    margin-top: 1em;
 }
 
 p.large {
@@ -104,6 +109,10 @@ section p {
     max-width: 600px;
 }
 
+.wide {
+    max-width: 1280px;
+}
+
 footer {
     padding: 4em;
     background-color: var(--primary-dark);
@@ -120,3 +129,76 @@ footer {
     align-items: center;
     background-color: var(--bg-light);
 }
+
+h2 {
+    text-align: center;
+    font-size: 3em;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.communication {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 4em 0; 
+}
+
+#methodsandsources {
+    background-color: snow;
+    height: 100%;
+    width: 100%;
+}
+
+/* Card */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E4E4E7;
+    padding: 24px;
+    border-radius: 12px;
+    width: 460px;
+    background: white;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    color: #18181B;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .success .badge {
+    background: var(--primary-dark);
+  }
+
+  .error .badge {
+    background: var(--error);
+  }
+  
+  .badge {
+    display: flex;
+    align-self: flex-start;
+    color: white;
+    border-radius: 14px;
+    gap: 2px;
+    padding: 4px 8px;
+    margin-bottom: 16px;
+    font-size: .8em;
+    justify-content: center;
+  }
+  
+  .title {
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  
+  .desc {
+    color: var(--foreground-muted);
+    margin-bottom: 16px;
+  }
+
+  .ph {
+    line-height: 1.5 !important;
+  }
