@@ -11,12 +11,12 @@
 
 ::-moz-selection { /* Code for Firefox */
     color: var(--bg-light);
-    background: var(--primary-light);
+    background: var(--primary-dark);
 }
 
 ::selection { /* Code for Firefox */
     color: var(--bg-light);
-    background: var(--primary-light);
+    background: var(--primary-dark);
 }
 
 body {
