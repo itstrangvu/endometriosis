@@ -9,7 +9,7 @@
     --error: #8e0000;
     --foreground: #181818;
     --foreground-muted: #71717A; 
-    --marker: tomato;
+    --marker: #8FBC8F;
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -38,11 +38,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    outline: 1px dashed var(--marker);
+    outline: 1px dotted var(--marker);
 }
 
 main > * {
-    margin: 4rem;
+    margin: 4rem 0;
 }
 
 main {
@@ -81,6 +81,7 @@ p {
     line-height: 1.5;
     font-size: 1.5em;
     margin-top: 1em;
+    text-align: justify;
 }
 
 p.large {
@@ -109,9 +110,6 @@ section p {
     max-width: 600px;
 }
 
-.wide {
-    max-width: 1280px;
-}
 
 footer {
     padding: 4em;
@@ -201,4 +199,15 @@ section {
 
   .ph {
     line-height: 1.5 !important;
+  }
+
+  /* Images */
+
+  .img-container {
+    margin: 3em 0;
+  }
+
+  img {
+    border-radius: 12px;
+    border: 1px solid var(--foreground-muted);
   }
