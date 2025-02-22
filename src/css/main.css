@@ -2,6 +2,8 @@
 /* Import the Inter font*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 :root {
     --bg-light: #fff5fc;
     --primary-light: #0b956a;
@@ -10,6 +12,10 @@
     --foreground: #181818;
     --foreground-muted: #71717A; 
     --marker: #8FBC8F;
+    --bg-1: #28170f; /*espresso*/
+    --bg-2: #063488; /*ocean*/
+    --bg-3: #987e48; /*biscuit*/
+    --bg-4: #1a4c3f; /*citron green*/
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -22,12 +28,29 @@
     background: var(--primary-dark);
 }
 
+/* .hero {
+    background-color: var(--bg-1);
+}
+
+.intro {
+    background-color: var(--bg-2);
+}
+
+#communication {
+    background-color: var(--bg-3);
+}
+
+#diagnosis {
+    background: var(--bg-4);
+} */
+
 body {
-    font-family: "Crimson Pro", serif;
-    /* font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    /* font-family: "Crimson Pro", serif; */
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "IBM Plex Mono", serif;
     min-height: 100vh;
-    background-color: var(--bg-light);
-    color: var(--primary-dark);
+    background-color: var(--bg-4);
+    color: var(--bg-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* cursor: url(../img/leaf-bold.svg) 0 32, pointer; */
@@ -37,12 +60,13 @@ body {
     margin: 0px 120px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    outline: 1px dotted var(--marker);
+    align-items: start;
+    /* outline: 1px dotted var(--marker); */
 }
 
 main > * {
     margin: 4rem 0;
+    width: 100%;
 }
 
 main {
@@ -54,24 +78,22 @@ main {
 } */
 
 .hero {
-    height: 100vh;
-    /* border: 1px dashed var(--marker); */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     margin: 0 !important;
-    font-family: "Crimson Pro", serif;
     flex-direction: column;
 }
 
 .hero h1 {
     font-size: 8rem;
-    padding: 2rem 0;
+    padding: 0;
+    margin-bottom: 0;
 }
 
 .intro-desc {
-    text-align: center;
-    font-size: 4em;
+    text-align: left;
+    font-size: 2em;
     line-height: 1;
     margin-top: 0;
     margin-bottom: .5em;
@@ -79,9 +101,8 @@ main {
 
 p {
     line-height: 1.5;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin-top: 1em;
-    text-align: justify;
 }
 
 p.large {
@@ -94,8 +115,8 @@ p.tiny {
 }
 
 a, a:visited {
-    color: var(--primary-dark);
-    border-bottom: 1px solid var(--primary-dark);
+    color: var(--bg-light);
+    border-bottom: 1px solid var(--bg-light);
     text-decoration: none;
 }
 
@@ -129,11 +150,11 @@ footer {
 }
 
 h2 {
-    text-align: center;
-    font-size: 3em;
+    font-size: 1em;
 }
 
 section {
+    min-height: 100vh; /* Each section is at least the height of the viewport */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,7 +228,63 @@ section {
     margin: 3em 0;
   }
 
-  img {
+  /* img {
     border-radius: 12px;
     border: 1px solid var(--foreground-muted);
+  } */
+
+
+  /* Default: Mobile with 4 columns */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; /* Adjust spacing as needed */
   }
+  
+  /* Tablet: 6 columns */
+  @media screen and (min-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  /* Desktop: 12 columns */
+  @media screen and (min-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(12, 1fr);
+    }
+    /* On Desktop, assign specific column spans */
+    .grid-title {
+      grid-column: 1 / span 2; /* Takes columns 1-2 */
+    }
+    .grid-text {
+      grid-column: 3 / span 4; /* Takes columns 3-6 */
+    }
+    .grid-other {
+      grid-column: 7 / span 6; /* Takes columns 7-12 */
+    }
+  }
+  
+/* Make the communication cards take full width */
+#communication .grid-other {
+    grid-column: 1 / span 12; /* Takes all 12 columns */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1em; /* Adds spacing between cards */
+  }
+  
+  /* Ensure each row (each set of cards) is at least 100vh */
+  .communication {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+    gap: 4em; /* Adds spacing between rows */
+    min-height: 100vh; /* Each row takes up full viewport height */
+  }
+  
+  /* Responsive: On smaller screens, stack the cards in a single column */
+  @media screen and (max-width: 768px) {
+    .communication {
+      grid-template-columns: 1fr; /* One card per row */
+    }
+  }
+  
