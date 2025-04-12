@@ -45,9 +45,10 @@
           </p>
         </div>
         <div class="grid-other">
-          <img src="src/img/01whatisendo.png" alt="Diagram explaining Endometriosis">
+          <img src="src/img/female reproductive system.svg" alt="Diagram explaining Endometriosis">
         </div>
       </div>
+      
     </section>
 
     <!-- ✅ Communication Section -->
@@ -247,9 +248,7 @@
   </main>
 
   <footer>
-    <section>
       <p>Made with passion for data magic and storytelling.</p>
-    </section>
   </footer>
 
     <!-- GSAP and ScrollTrigger -->
@@ -260,7 +259,7 @@
   gsap.registerPlugin(ScrollTrigger);
 
   // Opacity effect for <p> elements (works per paragraph)
-  gsap.utils.toArray("p").forEach((p) => {
+  gsap.utils.toArray("section p").forEach((p) => {
     gsap.fromTo(
       p,
       { opacity: 0.1 },
@@ -324,6 +323,112 @@ gsap.utils.toArray("section").forEach((section, index) => {
     onEnter: () => gsap.to("body", { backgroundColor: sectionColors[index], duration: 1.2, ease: "power2.out" }),
     onEnterBack: () => gsap.to("body", { backgroundColor: sectionColors[index], duration: 1.2, ease: "power2.out" }),
   });
+});
+
+// Updated script for true sequential paragraph reveal
+document.addEventListener('DOMContentLoaded', function() {
+  // Register GSAP plugins
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // Get the image container and the original image
+  const introSection = document.querySelector('.intro');
+  const imageContainer = document.querySelector('.intro .grid-other');
+  const originalImage = imageContainer.querySelector('img');
+  
+  // Create a second image that will replace the first one
+  const secondImage = document.createElement('img');
+  secondImage.src = 'src/img/endometriosis-lesions.svg'; // Your second image
+  secondImage.alt = 'Endometriosis lesions illustration';
+  secondImage.style.opacity = 0; // Start invisible
+  imageContainer.appendChild(secondImage);
+  
+  // Get all paragraphs in the intro section
+  const paragraphs = document.querySelectorAll('.intro .grid-text p');
+  
+  // Initially hide all paragraphs except the first one
+  gsap.set(paragraphs, { autoAlpha: 0, y: 20 });
+  gsap.set(paragraphs[0], { autoAlpha: 1, y: 0 }); // First paragraph visible by default
+  
+  // Make the image container sticky
+  ScrollTrigger.create({
+    trigger: introSection,
+    start: 'top 20%',
+    end: 'bottom 80%',
+    pin: imageContainer,
+    pinSpacing: false,
+    markers: false // Set to true for debugging
+  });
+  
+  // Create a sequential timeline for paragraphs
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: introSection,
+      start: 'top 20%',
+      end: 'bottom 60%',
+      scrub: true,
+      markers: false // Set to true for debugging
+    }
+  });
+  
+  // Add each paragraph to the timeline with appropriate spacing
+  paragraphs.forEach((paragraph, index) => {
+    if (index > 0) { // Skip the first paragraph (already visible)
+      tl.to(paragraph, { 
+        autoAlpha: 1, 
+        y: 0,
+        duration: 0.3
+      });
+      
+      // If this is paragraph index 1, trigger the image swap
+      if (index === 1) {
+        tl.to(secondImage, { 
+          opacity: 1, 
+          duration: 0.3 
+        }, "<");
+      }
+      
+      // Add a pause after each paragraph reveal
+      tl.to({}, { duration: 0.5 });
+      
+      // Slightly dim previous paragraphs as new ones appear
+      if (index > 0) {
+        tl.to(paragraphs.slice(0, index), { 
+          autoAlpha: 0.7, 
+          duration: 0.2 
+        }, "<");
+      }
+    }
+  });
+  
+  // Background color transitions remain as they are
+  
+  // Optional: Add a subtle scale effect to the images
+  gsap.fromTo(
+    [originalImage, secondImage],
+    { scale: 1 },
+    {
+      scale: 1.05,
+      ease: "none",
+      scrollTrigger: {
+        trigger: introSection,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    }
+  );
+  
+  // Add style to make sure paragraphs have enough space between them
+  paragraphs.forEach(p => {
+    p.style.marginBottom = "30vh";
+    p.style.position = "relative";
+  });
+  
+  // Make sure the text container has enough space
+  const textContainer = document.querySelector('.intro .grid-text');
+  if (textContainer) {
+    textContainer.style.paddingBottom = "40vh";
+  }
 });
 </script>
 
