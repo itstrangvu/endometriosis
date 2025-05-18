@@ -226,15 +226,15 @@
               <div class="receipt-header">
                 <h1 class="receipt-title">ENDO COSTS</h1>
                 
-                <div class="receipt-info">
+                <!-- <div class="receipt-info">
                   <div class="receipt-info-grid">
-                    <div class="receipt-info-cell">Date</div>
-                    <div class="receipt-info-cell">Table</div>
-                    <div class="receipt-info-cell">Guests</div>
-                    <div class="receipt-info-cell">Server</div>
+                    <div class="receipt-info-cell">Period</div>
+                    <div class="receipt-info-cell">Category</div>
+                    <div class="receipt-info-cell">Patient</div>
+                    <div class="receipt-info-cell">Facility</div>
                     <div class="receipt-info-cell receipt-number">46126</div>
                   </div>
-                </div>
+                </div> -->
                 
                 <div class="receipt-subtitle">COST BREAKDOWN</div>
               </div>
@@ -410,13 +410,13 @@
 
   // Array of translated background colors
   const sectionColors = [
-    "#1a4c3f",
-    "#28170f", // Espresso (Dark Brown)
-    "#063488", // Ocean (Deep Blue)
-    "#987e48", // Biscuit (Warm Beige)
-    "#658f5b",
-    "#4C585B",
-    "#4B5945",
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-4').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-1').trim(), // Espresso (Dark Brown)
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-2').trim(), // Dark Spring Green (previously Ocean Blue)
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-3').trim(), // Biscuit (Warm Beige)
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-5').trim(), // Sage Green
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-6').trim(), // Slate Gray
+    getComputedStyle(document.documentElement).getPropertyValue('--bg-7').trim(), // Forest Green
   ];
 
   // Ensure the first background color applies immediately on page load
