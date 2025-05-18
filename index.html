@@ -214,6 +214,97 @@
       </div>
     </section>
 
+    <!-- ✅ Costs Section -->
+    <section id="costs">
+      <div class="grid-container">
+        <h2 class="grid-title">Costs</h2>
+        <div class="grid-text">
+          <p>
+            Endometriosis carries significant financial burdens beyond the physical and emotional toll. The average annual cost per woman amounts to over 9,400 euros, with productivity losses representing the largest expense category.
+          </p>
+          <p>
+            These expenses include not only direct medical costs such as surgeries and doctor visits but also indirect costs like lost wages and decreased productivity at work.
+          </p>
+          <p>
+            Many women report spending thousands on treatments that aren't covered by insurance, creating an additional financial strain during an already challenging health situation.
+          </p>
+          <p>
+            The economic impact extends beyond the individual, affecting employers and healthcare systems with billions in costs annually across affected populations worldwide.
+          </p>
+        </div>
+        <div class="grid-other">
+          <div class="receipt-wrapper">
+            <!-- Receipt from the first document inserted here -->
+            <div class="receipt">
+              <div class="receipt-header">
+                <h1 class="receipt-title">ENDO COSTS</h1>
+                
+                <div class="receipt-info">
+                  <div class="receipt-info-grid">
+                    <div class="receipt-info-cell">Date</div>
+                    <div class="receipt-info-cell">Table</div>
+                    <div class="receipt-info-cell">Guests</div>
+                    <div class="receipt-info-cell">Server</div>
+                    <div class="receipt-info-cell receipt-number">46126</div>
+                  </div>
+                </div>
+                
+                <div class="receipt-subtitle">COST BREAKDOWN</div>
+              </div>
+              
+              <div class="receipt-body">
+                <div class="receipt-items">
+                  <div class="receipt-item" data-index="0">
+                    <div class="receipt-item-name">Productivity loss</div>
+                    <div class="receipt-item-cost">6,298 €</div>
+                  </div>
+                  
+                  <div class="receipt-item" data-index="1">
+                    <div class="receipt-item-name">Surgery</div>
+                    <div class="receipt-item-cost">903 €</div>
+                  </div>
+                  
+                  <div class="receipt-item" data-index="2">
+                    <div class="receipt-item-name">Monitoring tests</div>
+                    <div class="receipt-item-cost">591 €</div>
+                  </div>
+                  
+                  <div class="receipt-item" data-index="3">
+                    <div class="receipt-item-name">Hospitalization</div>
+                    <div class="receipt-item-cost">560 €</div>
+                  </div>
+                  
+                  <div class="receipt-item" data-index="4">
+                    <div class="receipt-item-name">Physician visits</div>
+                    <div class="receipt-item-cost">498 €</div>
+                  </div>
+                  
+                  <div class="receipt-item" data-index="5">
+                    <div class="receipt-item-name">Other health care costs</div>
+                    <div class="receipt-item-cost">561 €</div>
+                  </div>
+                  
+                  <div class="receipt-item total">
+                    <div class="receipt-item-name">Total</div>
+                    <div class="receipt-item-cost">9,411 €</div>
+                  </div>
+                </div>
+                
+                <div class="receipt-footer">
+                  <div class="receipt-footer-info">
+                    <span>525</span>
+                    <span class="receipt-footer-data-magic">DATA MAGIC</span>
+                    <span>academic.oup.com</span>
+                    <span>2012</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ✅ Treatment Section -->
     <section id="treatment">
       <div class="grid-container">
@@ -430,6 +521,73 @@ document.addEventListener('DOMContentLoaded', function() {
     textContainer.style.paddingBottom = "40vh";
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Register ScrollTrigger plugin if you haven't already
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Initialize receipt item highlighting
+    initReceiptAnimation();
+  }
+});
+
+function initReceiptAnimation() {
+  // Get all receipt items except the total
+  const receiptItems = document.querySelectorAll('.receipt-item:not(.total)');
+  
+  // Set initial state - all items at 0.6 opacity except first one
+  gsap.set(receiptItems, { opacity: 0.6 });
+  gsap.set(receiptItems[0], { opacity: 1 });
+  
+  // Create scroll triggers for the costs section paragraphs
+  const costsParagraphs = document.querySelectorAll('#costs .grid-text p');
+  
+  // Create a scroll trigger for each paragraph to highlight the corresponding receipt item
+  costsParagraphs.forEach((paragraph, index) => {
+    // Only create triggers for paragraphs that have a corresponding receipt item
+    if (index < receiptItems.length) {
+      ScrollTrigger.create({
+        trigger: paragraph,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => highlightItem(receiptItems[index]),
+        onEnterBack: () => highlightItem(receiptItems[index]),
+        markers: false, // Set to true for debugging
+      });
+    }
+  });
+  
+  // Optional: Add click event to highlight item when clicked
+  receiptItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      highlightItem(item);
+    });
+  });
+  
+  // Function to highlight an item
+  function highlightItem(activeItem) {
+    // Dim all items and highlight the active one
+    gsap.to(receiptItems, { opacity: 0.6, duration: 0.3 });
+    gsap.to(activeItem, { opacity: 1, duration: 0.3 });
+  }
+  
+  // Make the receipt wrapper sticky (as a fallback for browsers that don't support CSS position: sticky)
+  if (window.innerWidth >= 1024) {
+    const receiptWrapper = document.querySelector('#costs .receipt-wrapper');
+    if (receiptWrapper) {
+      ScrollTrigger.create({
+        trigger: '#costs',
+        start: "top top",
+        end: "bottom bottom",
+        pin: receiptWrapper,
+        pinSpacing: false,
+      });
+    }
+  }
+}
+
+
 </script>
 
 
