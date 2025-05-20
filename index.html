@@ -10,8 +10,8 @@
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
-  <main class="container px-4 md:px-6 lg:px-8 mx-auto max-w-screen-xl">
-    <section class="hero">
+  <section class="hero hero-bg">
+    <div class="container px-4 md:px-6 lg:px-8 mx-auto max-w-screen-xl">
       <h1 class="intro-title">Endometriosis</h1>
       <p>A focus on the medical condition that affects millions of women worldwide.</p>
       <p class="tiny">By 
@@ -19,16 +19,30 @@
         &amp; 
         <a href="#" target="_blank" rel="noopener noreferrer">Patrícia Gogová</a>
       </p>
-    </section>
-
+      <button class="scroll-button" onclick="scrollToContent()">
+        Learn more <i class="ph ph-arrow-down"></i>
+      </button>
+    </div>
+  </section>
+  
+  <main class="container px-4 md:px-6 lg:px-8 mx-auto max-w-screen-xl" id="main-content">
     <section class="intro">
       <div class="grid-container">
         <h2 class="section-title">What is Endometriosis?</h2>
         <div class="section-intro">
           <p>
-            Endometriosis is a chronic, inflammatory disease that affects women and can cause debilitating pelvic and period pain, as well as infertility. 
-            It also affects parts of the body beyond the pelvic area.
+            Endometriosis is a chronic, inflammatory disease that affects women, often causing severe pelvic and period pain that can be truly debilitating. 
+            It can lead to fertility challenges and affects areas beyond the pelvis as well. 
           </p>
+          <p>
+            This misplaced tissue still responds to monthly hormonal changes - it thickens, breaks down and bleeds. 
+            But unlike normal uterine tissue, it has no way to leave the body. 
+          </p>
+          <p>
+            The trapped tissue causes inflammation and forms growths called lesions, typically on reproductive organs and nearby tissues, 
+            though they can sometimes appear elsewhere in the body.
+          </p>
+          <p>Endometriosis also comes in different forms - from stage one (minimal) to stage four (severe) - some endo stays close to the surface of affected areas, while other forms dig deeper into tissues. </p>
         </div>
         <div class="section-content intro-container">
           <div class="intro-images">
@@ -374,6 +388,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
+  // Scroll button functionality
+  function scrollToContent() {
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  
   gsap.registerPlugin(ScrollTrigger);
 
   // Opacity effect for <p> elements (works per paragraph)
